@@ -10,6 +10,10 @@ class Task extends Model
 
     protected $touches = ['project'];
 
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
+
     // when a task will be created, this will be called
     protected static function boot()
     {
@@ -20,22 +24,24 @@ class Task extends Model
             $task->project->recordActivity('created_task');
 
         });
-
-
-        static ::updated(function($task){
-
-            if (!$task->completed) return;
-
-            $task->project->recordActivity('completed_task');
-
-        });
-
+        
     }
 
-    // when task is completed,
+    /**
+     *
+     */
     public function complete(){
         $this->update(['completed' => true]);
+
+        $this->project->recordActivity('completed_task');
     }
+
+    public function incomplete(){
+        $this->update(['completed' => false]);
+
+        $this->project->recordActivity('marked_as_not_completed_task');
+    }
+
 
     public function project(){
 
