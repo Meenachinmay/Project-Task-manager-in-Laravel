@@ -10,7 +10,7 @@
                 <a href="/projects" class="font-semibold">My Projects</a> / {{ $project->title }}
             </p>
 
-            <a href="/projects/create" class="bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded-full">New Project</a>
+            <a href="{{ $project->path() . '/edit'}}" class="bg-teal-500 hover:bg-teal-700 text-white py-2 px-4 rounded-full">Edit Project</a>
         </div>
     </header>
 
@@ -73,6 +73,14 @@
 
                         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
                     </form>
+
+                    @if($errors->any())
+                        <div class="field mt-6">
+                            @foreach($errors->all() as $error)
+                                <li class="text-sm text-red-500">{{ $error }}</li>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
 

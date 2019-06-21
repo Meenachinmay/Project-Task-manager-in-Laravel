@@ -19,18 +19,30 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // CREATE PROJECT PAGE
     Route::get('/projects/create', 'ProjectsController@create');
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    // INDEX PAGE
     Route::get('/projects', 'ProjectsController@index');
 
+    // SHOW
     Route::get('/projects/{project}', 'ProjectsController@show');
 
+    // EDIT PROJECT PAGE
+    Route::get('/projects/{project}/edit', 'ProjectsController@edit');
+
+    // CREATE PROJECT
     Route::post('/projects', 'ProjectsController@store');
+
+    // UPDATE PROJECT
     Route::patch('/projects/{project}', 'ProjectsController@update');
 
+    // CREATE TASK
     Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+
+    // UPDATE TASK
     Route::patch('/projects/{project}/tasks/{task}', 'ProjectTasksController@update');
 
 
