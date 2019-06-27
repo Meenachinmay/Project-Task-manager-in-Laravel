@@ -23,7 +23,7 @@
 <body class="bg-gray-100">
     <div id="app">
 
-        <nav class="bg-white">
+        <nav class="bg-white border-b">
 
             <div class="container mx-auto">
 
@@ -36,15 +36,15 @@
 
                     <div>
                         <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto flex">
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                        <a class="nav-link bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mr-3 rounded" href="{{ route('register') }}">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @else
